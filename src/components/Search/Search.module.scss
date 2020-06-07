@@ -1,0 +1,40 @@
+.container {
+  grid-area: search;
+  //   background-color: pink;
+}
+
+.search {
+  position: relative;
+  //   border: 1px solid black;
+  width: 272px;
+  //   height: 40px;
+}
+
+.input {
+  height: 40px;
+  min-width: 208px;
+  margin-top: 2vh;
+  border: 0;
+  // box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.16);
+  border: 1px solid #d8d8d8;
+  border-radius: 20px;
+  outline: none;
+  color: rgb(68, 68, 68);
+  padding: 0 42px 0 20px;
+}
+
+.icon {
+  position: absolute;
+  cursor: pointer;
+  width: 6.5%;
+  bottom: 0;
+  right: 0;
+  background-color: #bbc668;
+  padding: 12px;
+  border-radius: 50%;
+  border-top-left-radius: 0;
+
+  &:hover {
+    background-color: #b1bb62;
+  }
+}

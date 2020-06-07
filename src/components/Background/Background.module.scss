@@ -1,0 +1,35 @@
+.container {
+  grid-area: background;
+  //   margin-right: 50px;
+
+  display: grid;
+  grid-template-rows: 150px auto;
+  grid-template-areas: "title" "description";
+  grid-gap: 70px;
+  color: white;
+  background-image: url("image.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 60%;
+}
+
+.title {
+  grid-area: title;
+  align-self: end;
+  font-size: 50px;
+  text-align: end;
+  letter-spacing: 0.8px;
+  font-weight: 100;
+  font-family: "Telugu MN";
+  margin-right: 70px;
+}
+
+.description {
+  grid-area: description;
+  font-family: Source Sans Pro;
+  font-weight: 100;
+  max-width: 400px;
+  text-align: end;
+  justify-self: end;
+  margin-right: 70px;
+}

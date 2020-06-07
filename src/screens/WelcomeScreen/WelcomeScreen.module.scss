@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+  grid-template-columns: 120px 400px auto;
+  grid-template-rows: 100px auto;
+  grid-template-areas:
+    "sidebar search background"
+    "sidebar login background";
+  grid-column-gap: 100px;
+  grid-row-gap: 50px;
+  min-height: 100%;
+  background-color: #f4f4f4;
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+}
