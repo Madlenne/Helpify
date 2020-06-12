@@ -15,3 +15,29 @@
   background-size: contain;
   background-position: right top;
 }
+
+.comments {
+  position: relative;
+
+  background-color: white;
+  border-radius: 35px;
+  width: 75%;
+  height: max-content;
+  box-shadow: -7px 7px 20px rgba(0, 0, 0, 0.16);
+}
+
+.icon {
+  background-color: #6a8145;
+  width: 3%;
+  position: absolute;
+  border-radius: 50%;
+  border-top-left-radius: 0;
+  padding: 12px;
+  top: 0;
+  right: 0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #596e37;
+  }
+}

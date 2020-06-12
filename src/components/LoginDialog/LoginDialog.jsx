@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import SaveIcon from '../../icons/floppy-disk.png';
 import css from './LoginDialog.module.scss';
 
-const URL = "http://localhost:8082/api/v1/users";
+const REGISTER_URL = "http://localhost:8082/api/v1/users";
+const LOGIN_URL = "http://localhost:8082/api/v1/users/login";
 
-const LoginDialog = () =>{
+const LoginDialog = ({ setIsUserLoggedIn }) =>{
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
     const [isRegisterClicked, setIsRegisterClicked] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const handleOnChange = (event, setter) => {
         setter(event.target.value);
@@ -22,7 +24,7 @@ const LoginDialog = () =>{
     const onRegisterClick = () => {
         setIsRegisterClicked(true);
     }
-    console.log(isRegisterClicked);
+
     const handleOnRegister = async (event) => {
         event.preventDefault();
 
@@ -30,8 +32,7 @@ const LoginDialog = () =>{
             "login": login,
             "password": password
         }
-        console.log(payload);
-       await fetch(URL, {
+       await fetch(REGISTER_URL, {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
@@ -41,15 +42,58 @@ const LoginDialog = () =>{
         })
         .then(response => response.json())
         .then(data => {
-                console.log(data);
-                setLogin('');
-                setPassword('');
-                setIsRegisterClicked(false);
+
+                const { success } = data;
+                if(success){
+                    setLogin('');
+                    setPassword('');
+                    setIsRegisterClicked(false);
+                    setIsUserLoggedIn(true);
+
+                }
+                else{
+                    setIsUserLoggedIn(false);
+
+                }
         })
         
     }
 
-    const handleOnLogin = () => {}
+    const handleOnLogin = async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            "login": login,
+            "password": password
+        }
+
+        await fetch(LOGIN_URL, {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                        const { success } = data;
+                        if(success){
+
+                            setLogin('');
+                            setPassword('');
+                            setIsRegisterClicked(false);
+                            setIsError(false);
+                            setIsUserLoggedIn(true);
+
+                        }
+                        else{
+                            setIsError(true);
+                            setIsUserLoggedIn(false);
+
+                        }
+                })
+    }
 
     return(
         <div className={css.container}>
@@ -65,6 +109,7 @@ const LoginDialog = () =>{
                     <label>Password</label>
                     <input type="password" value={password}  onChange={(event) => handleOnChange(event, setPassword)} className={css.input} />
                 </div>
+                {isError && <div className={css.loginError}>Niepoprawny login lub hasło</div>}
                 <div className={css.info}>
                 {!isRegisterClicked &&
                 <>

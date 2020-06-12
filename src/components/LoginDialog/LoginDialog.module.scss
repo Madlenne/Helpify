@@ -75,6 +75,13 @@
   color: #505050;
 }
 
+.loginError {
+  grid-area: info;
+  color: red;
+  align-self: start;
+  justify-self: center;
+}
+
 .registerInfo {
   color: #6a8145;
   cursor: pointer;
