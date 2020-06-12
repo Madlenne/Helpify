@@ -1,0 +1,95 @@
+.container {
+  grid-area: ad;
+  background-color: white;
+  width: 90%;
+  border-radius: 35px;
+
+  display: grid;
+  grid-template-columns: 1fr 0.4fr;
+  grid-template-rows: 0.3fr 1fr;
+  grid-template-areas:
+    "header interested"
+    "description interested";
+  grid-gap: 30px;
+  box-shadow: -7px 7px 20px rgba(0, 0, 0, 0.16);
+}
+
+.header {
+  grid-area: header;
+  font-family: Palatino;
+  padding: 40px 0 0 50px;
+  display: flex;
+}
+
+.icon {
+  background-color: #505050;
+  width: 5%;
+  height: 5%;
+  padding: 13px;
+  border-radius: 15px;
+}
+
+.title {
+  margin-left: 50px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 28px;
+  color: #505050;
+  border-bottom: 1px solid #505050;
+  width: 50%;
+  height: 100%;
+  //   align-self: center;
+}
+
+.description {
+  grid-area: description;
+  margin-left: 50px;
+  color: #707070;
+  font-family: Helvetica Neue;
+  font-size: 15px;
+  //   align-self: center;
+}
+
+.interested {
+  grid-area: interested;
+  border-left: 1px solid #505050;
+  display: block;
+  //   margin-top: 30px;
+  align-self: center;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.interestedTitle {
+  font-family: Palatino;
+  color: #505050;
+  font-size: 22px;
+}
+
+.number {
+  font-family: Palatino;
+  color: #bbc668;
+  font-size: 35px;
+}
+
+.beInterested {
+  font-family: Source Sans Pro;
+  color: #505050;
+  text-align: center;
+  align-self: center;
+  height: 35px;
+
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.interestedIcon {
+  width: 3vh;
+  padding-right: 10px;
+}

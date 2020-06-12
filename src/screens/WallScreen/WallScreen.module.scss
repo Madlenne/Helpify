@@ -1,0 +1,71 @@
+.container {
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 70px 100px auto;
+  grid-template-areas:
+    "sidebar search"
+    "sidebar categories"
+    "sidebar ads";
+  grid-column-gap: 79px;
+  grid-row-gap: 50px;
+  min-height: 100%;
+  background-color: #f4f4f4;
+
+  &--sidebarExpanded {
+    display: grid;
+
+    grid-template-columns: 120px auto 300px;
+    grid-template-rows: 70px 100px auto;
+    grid-template-areas:
+      "sidebar search sidebarExpended"
+      "sidebar categories sidebarExpended"
+      "sidebar ads sidebarExpended";
+
+    grid-column-gap: 79px;
+    grid-row-gap: 50px;
+  }
+}
+
+.categoryTiles {
+  grid-area: categories;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.adTiles {
+  grid-area: ads;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.userAds {
+  grid-area: sidebarExpended;
+  background-color: #505050;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 50px;
+
+  display: grid;
+  grid-template-rows: 150px auto;
+  grid-template-areas: "userTitle" "adPreviews";
+}
+
+.title {
+  grid-area: userTitle;
+  color: white;
+  font-family: Palatino;
+  font-size: 25px;
+  text-align: center;
+  place-self: center;
+  padding-bottom: 15px;
+  width: 70%;
+  border-bottom: 1px solid white;
+}
+
+.adPreviews {
+  grid-area: adPreviews;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+}

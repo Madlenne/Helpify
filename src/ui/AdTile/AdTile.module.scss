@@ -1,0 +1,42 @@
+.container {
+  grid-area: ads;
+  background-color: white;
+  width: 200px;
+  height: 250px;
+  border-radius: 30px;
+  box-shadow: -7px 7px 20px rgba(0, 0, 0, 0.16);
+  margin-right: 50px;
+  margin-bottom: 50px;
+  color: #a6b15b;
+
+  &--green {
+    background-color: #bbc668;
+  }
+
+  display: grid;
+  grid-template-rows: 0.2fr auto;
+  grid-gap: 30px;
+  padding: 40px;
+}
+
+.title {
+  font-size: 25px;
+  font-family: Palatino;
+  border-bottom: 1px solid #a6b15b;
+  padding-bottom: 10px;
+
+  &--white {
+    border-bottom: 1px solid white;
+    color: white;
+  }
+}
+
+.description {
+  font-size: 18px;
+  font-weight: 300;
+  font-family: Source Sans Pro;
+
+  &--white {
+    color: white;
+  }
+}

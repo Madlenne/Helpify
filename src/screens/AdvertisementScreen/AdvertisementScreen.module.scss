@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 100px 0.4fr auto;
+  grid-template-areas:
+    "sidebar search"
+    "sidebar ad"
+    "sidebar comments";
+  grid-column-gap: 100px;
+  grid-row-gap: 50px;
+  min-height: 100%;
+  background-color: #f4f4f4;
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+}

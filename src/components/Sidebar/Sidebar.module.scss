@@ -5,10 +5,31 @@
   display: grid;
   grid-template-rows: 100px auto;
   grid-template-areas: "logo" "menu";
+  grid-gap: 100px;
 }
 
-.logo {
+.logo img {
   grid-area: logo;
   width: 40%;
   place-self: center;
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.ads img,
+.addAd img,
+.user {
+  margin: auto;
+  display: block;
+  width: 28%;
+  margin-bottom: 60px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import SaveIcon from '../../icons/floppy-disk.png';
 import css from './LoginDialog.module.scss';
 
+const URL = "http://localhost:8082/api/v1/users";
 
 const LoginDialog = () =>{
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+
+    const [isRegisterClicked, setIsRegisterClicked] = useState(false);
 
     const handleOnChange = (event, setter) => {
         setter(event.target.value);
@@ -16,28 +19,63 @@ const LoginDialog = () =>{
         console.log('search');
     }
 
+    const onRegisterClick = () => {
+        setIsRegisterClicked(true);
+    }
+    console.log(isRegisterClicked);
+    const handleOnRegister = async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            "login": login,
+            "password": password
+        }
+        console.log(payload);
+       await fetch(URL, {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+                console.log(data);
+                setLogin('');
+                setPassword('');
+                setIsRegisterClicked(false);
+        })
+        
+    }
+
+    const handleOnLogin = () => {}
+
     return(
         <div className={css.container}>
             <div className={css.title}>
-                Zaloguj się
+                {isRegisterClicked ? "Zarejestruj się" : "Zaloguj się"}
             </div>
-            <form /*method="POST"*/ className={css.form}>
+            <form onSubmit={isRegisterClicked ? handleOnRegister: handleOnLogin} className={css.form}>
                 <div className={css.login}>
-                    <label for="login">Login</label>
+                    <label>Login</label>
                     <input type="text" value={login}  onChange={(event) => handleOnChange(event, setLogin)} className={css.input} />
                 </div>
                 <div className={css.password}>
-                    <label for="password">Password</label>
-                    <input type="text" value={login}  onChange={(event) => handleOnChange(event, setPassword)} className={css.input} />
+                    <label>Password</label>
+                    <input type="password" value={password}  onChange={(event) => handleOnChange(event, setPassword)} className={css.input} />
                 </div>
                 <div className={css.info}>
-
+                {!isRegisterClicked &&
+                <>
                     <div >
                         Nie masz jeszcze konta?
                     </div>
-                    <div className={css.registerInfo}>
+                    <div className={css.registerInfo} onClick={onRegisterClick}>
                         Zarejestruj się!
                     </div>
+                </>
+                    }
                 </div>
 
                 <button type="submit" className={css.submitButton}> <img src={SaveIcon} alt="saveIcon" className={css.saveIcon}/> </button>

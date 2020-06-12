@@ -1,0 +1,58 @@
+.container {
+  height: 60px;
+  width: 80%;
+  background-color: #f4f4f4;
+  margin-bottom: 30px;
+  padding: 20px;
+  font-family: Source Sans Pro;
+  font-weight: 300;
+  line-height: 15px;
+
+  border-radius: 20px;
+  border: 1px solid #9a8f52;
+
+  display: grid;
+  grid-template-columns: 70px 110px;
+  grid-template-rows: 0.4fr 0.6fr;
+  grid-template-areas:
+    "category title"
+    "category description";
+
+  grid-gap: 5px;
+  grid-column-gap: 15px;
+}
+
+.title {
+  grid-area: title;
+  font-size: 15px;
+  font-family: "Modern No. 20";
+  font-weight: 100;
+  color: #444444;
+  border-bottom: 1px solid #9a8f52;
+}
+
+.description {
+  grid-area: description;
+  overflow: hidden;
+  font-size: 13px;
+  align-self: center;
+}
+
+.category {
+  grid-area: category;
+
+  background-color: #b4b4b4;
+  border-radius: 10px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.icon {
+  width: 50%;
+  margin: 0;
+  position: absolute; /* 2 */
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

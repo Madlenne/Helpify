@@ -30,18 +30,19 @@
 .form {
   grid-area: form;
   display: grid;
-  grid-template-rows: 1fr 1fr 1.5fr;
+  grid-template-rows: 1fr 0.6fr 1.5fr;
   //   grid-template-columns: 1fr 0.2fr;
   grid-template-areas:
     "login"
     "password"
-    "info";
+    "description";
 
   grid-gap: 20px;
 }
 
-.login label,
-.password label {
+.adTitle label,
+.category label,
+.description label {
   display: block;
   font-weight: 300;
   font-size: 15px;
@@ -49,8 +50,9 @@
   text-transform: uppercase;
 }
 
-.login input,
-.password input {
+.adTitle input,
+.category select,
+.description textarea {
   border: 0;
   outline: 0;
   border-bottom: 1px solid #505050;
@@ -58,21 +60,24 @@
   width: 100%;
   margin-top: 10px;
   height: 25px;
+  font-family: "Source Sans Pro";
 }
 
-.login {
+.adTitle {
   grid-area: login;
 }
 
-.password {
+.category {
   grid-area: password;
 }
 
-.info {
-  grid-area: info;
-  text-align: center;
-  align-self: end;
-  color: #505050;
+.categorySelect {
+  width: 100%;
+  border: 0;
+}
+
+.description textarea {
+  height: 62px;
 }
 
 .registerInfo {

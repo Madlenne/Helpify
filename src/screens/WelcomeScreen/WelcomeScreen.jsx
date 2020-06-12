@@ -1,5 +1,4 @@
 import React from 'react';
-// import Header from '../../components/Header/Header.jsx';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import Search from '../../components/Search/Search.jsx';
 import LoginDialog from '../../components/LoginDialog/LoginDialog.jsx';
