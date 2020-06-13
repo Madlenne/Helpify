@@ -7,7 +7,6 @@ import Edit from '../../icons/pen.png';
 
 import css from './AdvertisementScreen.module.scss';
 
-
 const AdvertisementScreen = () => {
 
     const [showCommentInput, setShowCommentInput] =  useState(false);
@@ -18,13 +17,11 @@ const AdvertisementScreen = () => {
 
     const comments = ['Lorem ipsum dolor sit amet, nec an labitur epicurei facilisis', 'melius volumus an mei. Omnium fierent mel id', 'melius volumus an mei. Omnium fierent mel id', 'melius volumus an mei. Omnium fierent mel id, inermis democritum pri ex. Munere possim constituam ne nam. '];
 
-    console.log('AdvertisementScreen', showCommentInput);
-
     return(
         <div className={css.container}>
             <Sidebar/>
             <Search/>
-            <AdvertisementCard category="study"/>
+            <AdvertisementCard />
             
             <div className={css.comments}>
             {showCommentInput &&

@@ -29,8 +29,6 @@ const Comment = ({ text, isNew }) =>{
         setComment(event.target.value);
     }
 
-    console.log('COMMENT',  isNew);
-    
     return(
         <div className={cln('container', {
             'container--noBorder': isNew
@@ -40,18 +38,13 @@ const Comment = ({ text, isNew }) =>{
                 <div className={css.user}>
                     {author}
                 </div>
-               
-                {/* { isNew && <div className={css.comment}>
-                    <textarea onChange={(event) => handleOnChange(event, setComment)}></textarea>
-                </div> } */}
-
+        
                 <div className={css.comment}>
                     {
                         isNew ? 
                         <>
                             <textarea onChange={(event) => handleOnChange(event, setComment)} placeholder="Add new comment"></textarea>
                             <button type="submit" className={css.submitButton}> <img src={SaveIcon} alt="saveIcon" className={css.saveIcon}/> </button>
-
                         </>
                         : text
                     }

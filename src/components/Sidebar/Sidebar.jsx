@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import css from './Sidebar.module.scss';
 import Logo from '../../icons/office.png';
 import Ads from '../../icons/notes2.png';
 import AddAd from '../../icons/notes.png';
 import User from '../../icons/user.png';
+import Logout from '../../icons/logout.png';
 import { NavLink } from 'react-router-dom';
 
 
 const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
 
-    // useEffect(() => {
-    //     const logout = () => {
-    //         setIsUserLoggedIn(false);
-    
-    //     }
-    // }, [setIsUserLoggedIn]);
     const logout = () => {
         
         setIsUserLoggedIn(false);
-
+        sessionStorage.removeItem("isLoggedIn");
     }
     
     return(
@@ -26,9 +23,8 @@ const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
             <NavLink to="/" className={css.logo}>
                 <img src={Logo}  alt="appLogo"/>
             </NavLink>
-        {!!isUserLoggedIn && 
+        {(Boolean(isUserLoggedIn) || Boolean(sessionStorage.getItem("isLoggedIn"))) && 
             <div className={css.menu}>
-                AAAA
                 <NavLink to="/wall" className={css.ads}>
                     <img src={Ads}  alt="ads"/>
                 </NavLink>
@@ -38,12 +34,20 @@ const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
                 {/* <NavLink to="/wall" className={css.user}> */}
                     <img src={User} onClick={openSidebar} className={css.user} alt="user"/>
                 {/* </NavLink> */}
-                <img src={User} onClick={logout} className={css.user} alt="user"/>
+                <img src={Logout} onClick={logout} className={css.user} alt="user"/>
 
             </div>
             }
         </div>
 
     )};
+
+Sidebar.propTypes = {
+    setIsUserLoggedIn: PropTypes.func,
+} 
+
+Sidebar.defaultTypes = {
+    setIsUserLoggedIn: () => {}
+}
 
 export default Sidebar;

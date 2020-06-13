@@ -40,3 +40,13 @@
     color: white;
   }
 }
+
+.navLink {
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+}

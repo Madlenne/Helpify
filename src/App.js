@@ -9,7 +9,6 @@ import './App.css';
 
   
   function App() {
-    // firebase.initializeApp(firebaseConfig);
     
   
 return (

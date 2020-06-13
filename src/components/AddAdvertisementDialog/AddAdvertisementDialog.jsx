@@ -26,21 +26,21 @@ const AddAdvertisementDialog = () =>{
                 }
                 console.log(payload);
 
-            //    await fetch(URL, {
-            //         method: 'POST',
-            //         headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify(payload)
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //             console.log(data);
-            //             setTitle('');
-            //             setCategory('');
-            //             setDescription('');
-            //     })
+               await fetch(URL, {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                        console.log(data);
+                        setTitle('');
+                        setCategory('');
+                        setDescription('');
+                })
 
     // }
     

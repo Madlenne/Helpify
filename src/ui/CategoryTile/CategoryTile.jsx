@@ -4,12 +4,12 @@ import css from './CategoryTile.module.scss';
 import { NavLink } from 'react-router-dom';
 
 
-const CategoryTile = ({ categoryIcon }) => {
+const CategoryTile = ({ categoryIcon, onClick }) => {
 return (
-        <div className={css.container}>
-            <NavLink to="/" >
+        <div className={css.container} onClick={onClick}>
+            {/* <NavLink to="/" > */}
                 <img src={categoryIcon} alt={`${categoryIcon}`} className={css.icon}/>
-            </NavLink>
+            {/* </NavLink> */}
         </div>
     );
 }

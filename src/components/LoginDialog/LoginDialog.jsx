@@ -48,11 +48,13 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
                     setLogin('');
                     setPassword('');
                     setIsRegisterClicked(false);
+                    sessionStorage.setItem("isLoggedIn", true);
                     setIsUserLoggedIn(true);
 
                 }
                 else{
                     setIsUserLoggedIn(false);
+                    sessionStorage.setItem("isLoggedIn", false);
 
                 }
         })
@@ -85,11 +87,14 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
                             setIsRegisterClicked(false);
                             setIsError(false);
                             setIsUserLoggedIn(true);
+                            sessionStorage.setItem("isLoggedIn", true);
+
 
                         }
                         else{
                             setIsError(true);
                             setIsUserLoggedIn(false);
+                            sessionStorage.setItem("isLoggedIn", false);
 
                         }
                 })
