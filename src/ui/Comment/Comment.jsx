@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import SaveIcon from '../../icons/floppy-disk.png';
@@ -8,26 +8,65 @@ import css from './Comment.module.scss';
 
 const cln = classnames.bind(css);
 
-const URL = "http://localhost:8082/api/v1/advertisements";
 
-const Comment = ({ text, isNew }) =>{
+const Comment = ({ authorId, text, isNew, adId, toggleCommentInput}) =>{
     
-    const [author, setAuthor] = useState('USER');
+    const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+    const [author, setAuthor] = useState('');
     const [comment, setComment] = useState('');
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
 
-        const payload ={
-            "author": author,
-            "comment": comment
+        const payload = {
+            "authorId": userId,
+            "description": comment,
+            "adId": adId,
         }
-        console.log(payload);
+        const URL = "http://localhost:8082/api/v1/comments";
+
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {console.log(response); return response})
+        toggleCommentInput();
+        
     }
 
     const handleOnChange = (event, setter) => {
         setComment(event.target.value);
     }
+
+    useEffect(() => {
+
+        async function fetchData() {
+        const URL = "http://localhost:8082/api/v1/users";
+
+            await fetch(`${URL}/${userId}`)
+                 .then(response => response.json())
+                 .then(data => {
+                    console.log(data);
+                    const { login } = data;
+                     setAuthor(login);
+
+             })
+     .catch(error => {
+                     console.error(error);
+                 });
+         }
+        //  if(authorId){
+
+             fetchData();
+        //  }
+    },[authorId, userId])
+
+
+    
 
     return(
         <div className={cln('container', {

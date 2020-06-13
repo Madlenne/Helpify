@@ -7,23 +7,26 @@ import Ads from '../../icons/notes2.png';
 import AddAd from '../../icons/notes.png';
 import User from '../../icons/user.png';
 import Logout from '../../icons/logout.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 
 
 const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
+    const history = useHistory();
 
     const logout = () => {
         
-        setIsUserLoggedIn(false);
-        sessionStorage.removeItem("isLoggedIn");
+        // setIsUserLoggedIn(false);
+        sessionStorage.removeItem("userId");
+        history.push("/");
+
     }
-    
+
     return(
         <div className={css.container}>
             <NavLink to="/" className={css.logo}>
                 <img src={Logo}  alt="appLogo"/>
             </NavLink>
-        {(Boolean(isUserLoggedIn) || Boolean(sessionStorage.getItem("isLoggedIn"))) && 
+        {(Boolean(isUserLoggedIn) || Boolean(sessionStorage.getItem("userId"))) && 
             <div className={css.menu}>
                 <NavLink to="/wall" className={css.ads}>
                     <img src={Ads}  alt="ads"/>

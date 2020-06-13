@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SaveIcon from '../../icons/floppy-disk.png';
 import css from './LoginDialog.module.scss';
+import { useHistory } from 'react-router-dom';
 
 const REGISTER_URL = "http://localhost:8082/api/v1/users";
 const LOGIN_URL = "http://localhost:8082/api/v1/users/login";
@@ -9,6 +10,8 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+
+    const history = useHistory();
 
     const [isRegisterClicked, setIsRegisterClicked] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -45,16 +48,20 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
 
                 const { success } = data;
                 if(success){
+                    const { userId } = data;
                     setLogin('');
                     setPassword('');
                     setIsRegisterClicked(false);
-                    sessionStorage.setItem("isLoggedIn", true);
                     setIsUserLoggedIn(true);
+
+                    sessionStorage.setItem("userId", userId);
+                    history.push("/wall");
+
 
                 }
                 else{
                     setIsUserLoggedIn(false);
-                    sessionStorage.setItem("isLoggedIn", false);
+                    sessionStorage.removeItem("userId");
 
                 }
         })
@@ -81,20 +88,22 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
                 .then(data => {
                         const { success } = data;
                         if(success){
-
+                            const { userId } = data;
                             setLogin('');
                             setPassword('');
                             setIsRegisterClicked(false);
                             setIsError(false);
                             setIsUserLoggedIn(true);
-                            sessionStorage.setItem("isLoggedIn", true);
-
-
+                            sessionStorage.setItem("userId", userId);
+                            console.log(data);
+                            history.push("/wall");
+                            
                         }
                         else{
                             setIsError(true);
                             setIsUserLoggedIn(false);
-                            sessionStorage.setItem("isLoggedIn", false);
+                            sessionStorage.removeItem("userId");
+                            // sessionStorage.setItem("isLoggedIn", false);
 
                         }
                 })
