@@ -7,7 +7,7 @@ import css from './WelcomeScreen.module.scss';
 
 
 const WelcomeScreen = () => {
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(sessionStorage.getItem("isLoggedIn"));
 
     return(
         <div className={css.container}>

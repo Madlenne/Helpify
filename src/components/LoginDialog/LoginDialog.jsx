@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import SaveIcon from '../../icons/floppy-disk.png';
 import css from './LoginDialog.module.scss';
 import { useHistory } from 'react-router-dom';
+import config  from '../../config.js'
 
-const REGISTER_URL = "http://localhost:8082/api/v1/users";
-const LOGIN_URL = "http://localhost:8082/api/v1/users/login";
+const REGISTER_URL = `${config.BASE_URL}/api/v1/users`;
+const LOGIN_URL = `${config.BASE_URL}/api/v1/users/login`;
 
 const LoginDialog = ({ setIsUserLoggedIn }) =>{
     
@@ -21,7 +22,6 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
     }
 
     const search = () => {
-        console.log('search');
     }
 
     const onRegisterClick = () => {
@@ -95,7 +95,6 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
                             setIsError(false);
                             setIsUserLoggedIn(true);
                             sessionStorage.setItem("userId", userId);
-                            console.log(data);
                             history.push("/wall");
                             
                         }
@@ -103,7 +102,6 @@ const LoginDialog = ({ setIsUserLoggedIn }) =>{
                             setIsError(true);
                             setIsUserLoggedIn(false);
                             sessionStorage.removeItem("userId");
-                            // sessionStorage.setItem("isLoggedIn", false);
 
                         }
                 })

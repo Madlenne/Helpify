@@ -3,13 +3,14 @@ import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import Search from '../../components/Search/Search.jsx';
 import AdvertisementCard from '../../components/AdvertisementCard/AdvertisementCard.jsx';
 import { useParams } from 'react-router-dom';
+import config  from '../../config.js'
 
 import Comment from '../../ui/Comment/Comment.jsx';
 import Edit from '../../icons/pen.png';
 
 import css from './AdvertisementScreen.module.scss';
 
-const URL = "http://localhost:8082/api/v1/comments/advertisement"
+const URL = `${config.BASE_URL}/api/v1/comments/advertisement`
 
 
 const AdvertisementScreen = () => {
@@ -40,8 +41,6 @@ const AdvertisementScreen = () => {
          fetchData();
     },[id, showCommentInput])
 
-    // const comments = ['Lorem ipsum dolor sit amet, nec an labitur epicurei facilisis', 'melius volumus an mei. Omnium fierent mel id', 'melius volumus an mei. Omnium fierent mel id', 'melius volumus an mei. Omnium fierent mel id, inermis democritum pri ex. Munere possim constituam ne nam. '];
-    console.log(comments);
     return(
         <div className={css.container}>
             <Sidebar/>

@@ -8,7 +8,7 @@ import deal from '../../icons/agreement.png';
 import sport from '../../icons/ball.png';
 import info from '../../icons/info.png';
 import classnames from 'classnames/bind';
-
+import config  from '../../config.js'
 import AdTile from '../../ui/AdTile/AdTile.jsx';
 
 import css from './WallScreen.module.scss';
@@ -22,7 +22,7 @@ const WallScreen = () => {
     const [currentCategory, setCurrentCategory] = useState('');
 
     useEffect(() => {
-        let URL = "http://localhost:8082/api/v1/advertisements"
+        let URL = `${config.BASE_URL}/api/v1/advertisements`;
 
         if(currentCategory){
             URL = URL + `/category/${currentCategory}`;
@@ -42,7 +42,7 @@ const WallScreen = () => {
          }
          fetchData();
     },[currentCategory])
-
+    
     return(
         <div className={cln('container', {
             'container--sidebarExpanded': isSidebarExpanded
@@ -56,7 +56,6 @@ const WallScreen = () => {
                 <CategoryTile categoryIcon={info}  onClick={() => setCurrentCategory("info")} />
             </div>
             <div className={css.adTiles}>
-            {/* <AdTile title="test" description="test test" isOd/> */}
                 {
                     ads.map(({id, title, description}, index) => 
                         <AdTile id ={id} title={title} description={description} isOdd={index % 2 !== 0} key={id}/>
@@ -69,10 +68,14 @@ const WallScreen = () => {
                     Twoje ogłoszenia
                 </div>  
                 <div className={css.adPreviews}>
-                {ads.map(({id, title, description}, index) => <AdPreview id={id} title={title} description={description} category={study}/>)}
-                 {/* <AdPreview title="test" description="test test" category={study}/>
-                 <AdPreview title="test" description="test test" category={study}/> */}
-                    {/* {ads.map(({ title, description, category }) => <AdPreview title={title} description={description} category={category}/> )} */}
+                {
+                ads.map(({ id, title, description, authorId }, index) => {
+                    if(authorId === Number(sessionStorage.getItem('userId'))){
+                       return <AdPreview id={id} title={title} description={description} category={study}/>;
+                    }
+                })
+            }
+                
                 </div> 
             </div> 
             }

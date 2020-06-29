@@ -1,6 +1,5 @@
 .container {
   grid-area: background;
-  //   margin-right: 50px;
 
   display: grid;
   grid-template-rows: 150px auto;
@@ -32,4 +31,5 @@
   text-align: end;
   justify-self: end;
   margin-right: 70px;
+  line-height: 25px;
 }

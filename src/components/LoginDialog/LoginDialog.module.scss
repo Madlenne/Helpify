@@ -7,7 +7,6 @@
 
   display: grid;
   grid-template-rows: 1fr 5fr;
-  //   grid-template-columns: 1fr 0.2fr;
   grid-template-areas:
     "title"
     "form";
@@ -31,7 +30,6 @@
   grid-area: form;
   display: grid;
   grid-template-rows: 1fr 1fr 1.5fr;
-  //   grid-template-columns: 1fr 0.2fr;
   grid-template-areas:
     "login"
     "password"
@@ -93,7 +91,6 @@
 
 .submitButton {
   position: absolute;
-  //   grid-area: button;
   height: 65px;
   background-color: #6a8145;
   border: 0;

@@ -1,13 +1,10 @@
 .container {
   grid-area: search;
-  //   background-color: pink;
 }
 
 .search {
   position: relative;
-  //   border: 1px solid black;
   width: 272px;
-  //   height: 40px;
 }
 
 .input {
@@ -15,7 +12,6 @@
   min-width: 208px;
   margin-top: 2vh;
   border: 0;
-  // box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.16);
   border: 1px solid #d8d8d8;
   border-radius: 20px;
   outline: none;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import css from './Sidebar.module.scss';
@@ -15,7 +15,6 @@ const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
 
     const logout = () => {
         
-        // setIsUserLoggedIn(false);
         sessionStorage.removeItem("userId");
         history.push("/");
 
@@ -34,9 +33,7 @@ const Sidebar = ({ isUserLoggedIn, setIsUserLoggedIn, openSidebar }) => {
                 <NavLink to="/add" className={css.addAd}>
                     <img src={AddAd}  alt="addAd"/>
                 </NavLink>
-                {/* <NavLink to="/wall" className={css.user}> */}
                     <img src={User} onClick={openSidebar} className={css.user} alt="user"/>
-                {/* </NavLink> */}
                 <img src={Logout} onClick={logout} className={css.user} alt="user"/>
 
             </div>

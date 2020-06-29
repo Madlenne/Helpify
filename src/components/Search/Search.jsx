@@ -12,7 +12,6 @@ const Search = () =>{
     }
 
     const search = () => {
-        console.log('search');
     }
     return(
         <div className={css.container}>

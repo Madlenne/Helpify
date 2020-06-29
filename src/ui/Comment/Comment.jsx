@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import SaveIcon from '../../icons/floppy-disk.png';
 import classnames from 'classnames/bind';
+import config  from '../../config.js'
 
 import css from './Comment.module.scss';
 
@@ -23,7 +24,7 @@ const Comment = ({ authorId, text, isNew, adId, toggleCommentInput}) =>{
             "description": comment,
             "adId": adId,
         }
-        const URL = "http://localhost:8082/api/v1/comments";
+        const URL = `${config.BASE_URL}/api/v1/comments`;
 
         await fetch(URL, {
             method: 'POST',
@@ -33,7 +34,7 @@ const Comment = ({ authorId, text, isNew, adId, toggleCommentInput}) =>{
             },
             body: JSON.stringify(payload)
         })
-        .then(response => {console.log(response); return response})
+        .then(response => response)
         toggleCommentInput();
         
     }
@@ -45,25 +46,22 @@ const Comment = ({ authorId, text, isNew, adId, toggleCommentInput}) =>{
     useEffect(() => {
 
         async function fetchData() {
-        const URL = "http://localhost:8082/api/v1/users";
+        const URL = `${config.BASE_URL}/api/v1/users`;
 
-            await fetch(`${URL}/${userId}`)
+            await fetch(`${URL}/${authorId}`)
                  .then(response => response.json())
                  .then(data => {
-                    console.log(data);
                     const { login } = data;
-                     setAuthor(login);
+                    setAuthor(login);
 
              })
      .catch(error => {
                      console.error(error);
                  });
          }
-        //  if(authorId){
 
              fetchData();
-        //  }
-    },[authorId, userId])
+    },[authorId])
 
 
     

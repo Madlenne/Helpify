@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
 import SaveIcon from '../../icons/floppy-disk.png';
 import css from './AddAdvertisementDialog.module.scss';
+import { useHistory } from 'react-router-dom';
+import config from '../../config.js';
 
-const URL = "http://localhost:8082/api/v1/advertisements";
+const URL = `${config.BASE_URL}/api/v1/advertisements`;
 
 const AddAdvertisementDialog = () =>{
     
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('study');
+
+    const history = useHistory();
 
 
     const handleOnChange = (event, setter) => {
@@ -20,11 +24,11 @@ const AddAdvertisementDialog = () =>{
         event.preventDefault();
         
                 const payload = {
+                    "authorId": sessionStorage.getItem('userId'),
                     "title": title,
                     "category": category,
                     "description": description
                 }
-                console.log(payload);
 
                await fetch(URL, {
                     method: 'POST',
@@ -36,13 +40,12 @@ const AddAdvertisementDialog = () =>{
                 })
                 .then(response => response.json())
                 .then(data => {
-                        console.log(data);
                         setTitle('');
                         setCategory('');
                         setDescription('');
-                })
+                        history.push("/wall");
 
-    // }
+                })
     
         
     }
@@ -64,13 +67,12 @@ const AddAdvertisementDialog = () =>{
                 <div className={css.category}>
                     <label>Kategoria</label>
                     <select onChange={handleCategoryChange} className={css.categorySelect}>
-                        <option value="study">Pomoc w nauce</option>
+                        <option value="study" selected>Pomoc w nauce</option>
                         <option value="deal">Zamiana</option>
                         <option value="sport">Sport</option>
                         <option value="info">Informacje</option>
 
                     </select>
-                    {/* <input type="password"  onChange={(event) => handleOnChange(event)} className={css.input} /> */}
                 </div>
                 <div className={css.description}>
                     <label>Opis</label>
